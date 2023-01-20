@@ -1,14 +1,21 @@
-name: reviewdog
-on: [pull_request]
+name: Spell Check
+
+on: 
+  pull_request:
+  push:
+        branches:
+            - master
 jobs:
-  misspell:
-    name: runner / misspell
+  spell_check:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out code.
-        uses: actions/checkout@v2
-      - name: Run misspell with reviewdog
-        uses: reviewdog/action-misspell@v1.12.3
-        with:
-          github_token: ${{ secrets.github_token }}
-          locale: "US"
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Install spelling checker
+      run: |
+        pip install -U git+https://github.com/lucas-vl/pyspellchecker.git
+
+    - name: Run spelling checker
+      run: |
+        python -m spellchecker --path .
