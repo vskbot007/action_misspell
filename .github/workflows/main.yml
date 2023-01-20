@@ -1,0 +1,18 @@
+name: Spell Check
+
+on: [push]
+
+jobs:
+  spell_check:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Install spelling checker
+      run: |
+        pip install -U git+https://github.com/lucas-vl/pyspellchecker.git
+
+    - name: Run spelling checker
+      run: |
+        python -m spellchecker --path . --ext .txt
