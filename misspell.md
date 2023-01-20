@@ -1,1 +1,1 @@
-Determinisitic
+clas off clanns is grat
