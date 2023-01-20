@@ -7,8 +7,8 @@ jobs:
     steps:
       - name: Check out code.
         uses: actions/checkout@v2
-      - name: misspell
-        uses: reviewdog/action-misspell@v1
+      - name: Run misspell with reviewdog
+        uses: reviewdog/action-misspell@v1.12.3
         with:
           github_token: ${{ secrets.github_token }}
           locale: "US"
